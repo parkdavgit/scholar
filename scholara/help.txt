@@ -1,0 +1,39 @@
+	
+1111	1111
+2222	2222
+5555	5555
+8888	2222
+david	1019
+David01	4444
+David02	4444
+david01	4444
+park1	4444
+park2	4444
+User1	4444
+
+*리더쉽장학금
+박성업	1111
+오문길	2222
+
+*교우장학금
+조영권	5555
+곽성효	User1
+
+*이젤장학금
+신안나	David01
+JulieShin	David02
+
+*특기생장학금
+김재익	park2
+이 순	park1
+
+
+전윤재	Alumni
+정다현	Alumni
+권윤	Alumni
+박하민	Easel
+김은형	Easel
+계한준	Leadership
+김평강	Leadership
+이가은	Special Student
+정승현	Special Student

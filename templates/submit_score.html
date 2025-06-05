@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HOME</title>
+     
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+   
+      <meta charset="UTF-8">
+      <title>Sheet1 Table</title>
+      <style>
+          table {
+              border-collapse: collapse;
+              width: 100%;
+          }
+          th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+          }
+          th {
+              background-color: #f2f2f2;
+          }
+      </style>
+
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+  </head>
+
+<body>
+  <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
+    <a class="navbar-brand" href="#">{{score.candidate.scholarship}}점수 입력:</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+  </nav>
+
+
+<nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
+  <!-- submit_score.html -->
+ 
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">제출</button>
+  </form>
+</nav>
+  <br>
+  <a href="{% url 'index' %}" class="btn btn-secondary float-left">index</a> 
+  
+  
+ 
+
+  
+
+      <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: right;">
+        <th>큰빛교회 장학 선정 기준/Scholarship selection criteria -  2023.6</th>
+        <th>Unnamed: 1</th>
+        <th>Unnamed: 2</th>
+        <th>Unnamed: 3</th>
+        <th>Unnamed: 4</th>
+        <th>Unnamed: 5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>교우 장학금/Alumni Scholarship</td>
+        <td>NaN</td>
+        <td>%</td>
+        <td>상/High</td>
+        <td>중/Med.</td>
+        <td>하/Low</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>신앙/Faith</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>봉사 및 교회 활동/Volunteer&activity</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>리더십 장학금/Leadership Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>영향력.비전/Influence.Vision</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>교직원 자녀 장학금/Faculty's Children Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.6</td>
+        <td>60</td>
+        <td>50</td>
+        <td>40</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>신앙고백.봉사/Faith.Volunteer</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>선교사/자녀 장학금/Missionary Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.6</td>
+        <td>60</td>
+        <td>50</td>
+        <td>40</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>신앙고백/Faith</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>신학생 장학금/Theological Seminary Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.6</td>
+        <td>60</td>
+        <td>50</td>
+        <td>40</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>영향력.비전/Influence.Vision</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>이젤 장학금/Art scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>수상경력/Awards</td>
+        <td>NaN</td>
+        <td>0.3</td>
+        <td>30</td>
+        <td>20</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>신앙/Faith</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.1</td>
+        <td>10</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>특기생 장학금/Special Talent Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>수상경력/Awards</td>
+        <td>NaN</td>
+        <td>0.3</td>
+        <td>30</td>
+        <td>20</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>신앙/Faith</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.1</td>
+        <td>10</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>아산 장학금/Asan Scholarship</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>재정/Financial</td>
+        <td>NaN</td>
+        <td>0.4</td>
+        <td>40</td>
+        <td>30</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>수상경력/Awards</td>
+        <td>NaN</td>
+        <td>0.3</td>
+        <td>30</td>
+        <td>20</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>신앙/Faith</td>
+        <td>NaN</td>
+        <td>0.2</td>
+        <td>20</td>
+        <td>15</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>추천/Nominated</td>
+        <td>NaN</td>
+        <td>0.1</td>
+        <td>10</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+   
+
+
+
+
+
+
+
+
+</body>
+</html>
