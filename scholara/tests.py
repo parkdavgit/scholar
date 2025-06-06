@@ -52,3 +52,82 @@ def edit_score(request):
         'form': form,
         'score_instance': score_instance,
     }) 
+
+
+    ##########################################################################
+#nginx>scholar.conf
+
+server {
+    listen 80;
+    server_name   ec2-3-140-240-73.us-east-2.compute.amazonaws.com;
+    charset uft-8;
+    client_max_body_size 128M;
+
+    location / {
+        uwsgi_pass unix:///tmp/scholar.sock;
+        include uwsgi_params;
+    }
+}
+
+#uwsgi>scholar.ini 
+[uwsgi]
+
+chdir = /srv/scholar/
+
+module = scholar.wsgi:application
+
+home = /home/ubuntu/myvenv/
+
+uid = ubuntu
+
+gid = ubuntu
+
+socket = /tmp/scholar.sock
+
+chmod-socket = 666
+
+chown-socket = ubuntu:ubuntu
+
+
+
+enable-threads = true
+
+master = true
+
+vacuum = true
+
+pidfile = /tmp/scholar.pid
+
+logto = /var/log/uwsgi/scholar/ @(exec://date +%%Y-%%m-%%d).log
+
+log-reopen = true
+
+#uwsgi>uwsgi.service
+[Unit]
+
+Description=uWSGI service
+
+After=syslog.target
+
+[Service]
+
+ExecStart=/home/ubuntu/myvenv/bin/uwsgi -i /srv/scholar/.config/uwsgi/scholar.ini
+
+Restart=always
+
+KillSignal=SIGQUIT
+
+Type=notify
+
+StandardError=syslog
+
+NotifyAccess=all
+
+[Install]
+
+WantedBy=multi-user.target
+
+
+
+
+
