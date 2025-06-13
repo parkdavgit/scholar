@@ -6,7 +6,7 @@ After=syslog.target
 
 [Service]
 
-ExecStart=/home/ubuntu/myvenv/bin/uwsgi --ini /srv/scholar/.config/uwsgi/scholar.ini
+ExecStart=/home/ubuntu/myvenv/bin/uwsgi --ini /srv/scholar/scholar/.config/uwsgi/scholar.ini
 
 Restart=always
 
