@@ -21,7 +21,7 @@ class ScoreForm(forms.ModelForm):
 class EditScoreForm(forms.ModelForm):
     class Meta:
         model = Score
-        fields = ['criteria', 'score']
+        fields = ['candidate','criteria', 'score']
         widgets = {
             'value': forms.NumberInput(attrs={'min': 0, 'max': 100}),
         }

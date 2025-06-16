@@ -26,7 +26,7 @@ def scholarship_detail(request, scholarship_id):
     })
 
 
-@login_required
+@login_required(login_url='index')
 def submit_score(request):
     #reviewer = get_object_or_404(Reviewer, user=request.user)
     # 이 경우 만일 request.user가 reviewer에 포함이 되지 않으면 page not found ERROR
@@ -91,33 +91,7 @@ def edit_score(request, score_id):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@login_required
+@login_required(login_url='index')
 def my_scores(request):
     reviewer = Reviewer.objects.filter(user=request.user).first()
     if not reviewer:
