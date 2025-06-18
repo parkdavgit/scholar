@@ -1,5 +1,5 @@
 from django import forms
-from .models import Score, Candidate, Criteria
+from .models import Score, Candidate, Criteria, Reviewer
 
 class ScoreForm(forms.ModelForm):
     class Meta:
@@ -40,4 +40,12 @@ class EditScoreForm(forms.ModelForm):
                 else:
                     self.fields['criteria'].queryset = Criteria.objects.none()
             else:
-                self.fields['criteria'].queryset = Criteria.objects.none()        
+                self.fields['criteria'].queryset = Criteria.objects.none()   
+
+class ReviewCompletionForm(forms.ModelForm):
+    class Meta:
+        model = Reviewer
+        fields = ['comment']
+        widgets = {
+            'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Comment가 있으시면 적어주세요 (선택사항)'}),
+        }                                     
