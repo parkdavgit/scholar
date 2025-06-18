@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>선정위원 입력 상태
+  </title>
+     
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <style>
+      table {
+          border-collapse: collapse;
+          width: 6~100%;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+  </style>
+  
+ 
+</head>
+
+<body>
+ 
+
+    <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
+        <a class="navbar-brand" href="#"> 선정위원 입력 상태</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+       
+      </nav>
+      <table>
+        <thead>
+          <tr>
+            <th>선정위원 User ID</th>
+            <th>선정위원 이름</th>
+            <th>완료 여부</th>
+            <th>코멘트</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reviewer in reviewers %}
+            <tr>
+              <td>{{ reviewer.user.username }}</td>
+              <td>{{ reviewer.name }}</td>
+              <td>
+                {% if reviewer.is_done %}
+                  ✅ 완료
+                {% else %}
+                  ❌ 미완료
+                {% endif %}
+              </td>
+              <td>{{ reviewer.comment|default:"(코멘트 없음)" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table><br>
+
+      <a href="{% url 'index' %}" class="btn btn-primary float-left">HOME</a> 
+
+</body>
+</html>
+
