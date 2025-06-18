@@ -6,6 +6,9 @@ from .models import Scholarship, Candidate, Criteria, Reviewer, Score
 from django.contrib.auth.decorators import login_required
 #for error handling
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import ReviewCompletionForm 
+from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
     scholarship =Scholarship.objects.all()
@@ -197,3 +200,32 @@ def reviewer_report(request, scholarship_id):
         'criteria_list': criteria_list,
         'report_data': report_data
     })
+
+@login_required
+def mark_review_complete(request):
+    reviewer = Reviewer.objects.filter(user=request.user).first()
+
+    if not reviewer:
+        messages.error(request, "리뷰어 정보가 없습니다.")
+        return redirect('home')
+
+    if reviewer.is_done:
+        return render(request, 'thank_you.html')  # 이미 완료한 경우
+
+    if request.method == 'POST':
+        form = ReviewCompletionForm(request.POST, instance=reviewer)
+        if form.is_valid():
+            reviewer = form.save(commit=False)
+            reviewer.is_done = True
+            reviewer.save()
+            messages.success(request, "수고하셨습니다. 점수 입력이 완료되었습니다.")
+            return render(request, 'thank_you.html')
+    else:
+        form = ReviewCompletionForm(instance=reviewer)
+
+    return render(request, 'review_complete_form.html', {'form': form})
+
+@staff_member_required
+def admin_index(request):
+    reviewers = Reviewer.objects.all()
+    return render(request, 'admin_index.html', {'reviewers': reviewers})

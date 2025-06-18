@@ -19,7 +19,8 @@ class Reviewer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     scholarships = models.ManyToManyField(Scholarship, related_name='reviewers')
-
+    is_done = models.BooleanField(default=False)
+    comment = models.TextField(blank=True, null=True)  # ✅ 코멘트 필드 추가
     def __str__(self):
         return f"{self.name}"
 
