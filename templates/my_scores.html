@@ -20,9 +20,11 @@
         </button>
        
       </nav>
-      <p><strong>입력 완료:</strong> {{ total_entered }} / {{ total_required }}</p>
+      <br>
       <div class="container my-3">
-        <h3>{{ user }}&nbsp;님이 입력한 점수표</h3>
+      <p style="color:green;">입력 상태:Total Entered/Total Requird<strong> {{ total_entered }} / {{ total_required }}</strong></p>
+      
+        
         {% if scores %}
           <table class="table table-bordered">
             <thead>
@@ -31,7 +33,6 @@
                 <th>선정 기준</th>
                 <th>점수</th>
                 <th>수정</th>
-
               </tr>
             </thead>
             <tbody>
