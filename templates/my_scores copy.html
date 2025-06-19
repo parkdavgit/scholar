@@ -14,13 +14,13 @@
 
 <body>
     <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-        <a class="navbar-brand">{{ score.candidate.sholarship }}&nbsp;장학금 위원별 점수표</a>
+        <a class="navbar-brand">장학금 위원별 점수표</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
        
       </nav>
-      <p><strong>입력 완료:</strong> {{ total_entered }} / {{ total_required }}</p>
+
       <div class="container my-3">
         <h3>{{ user }}&nbsp;님이 입력한 점수표</h3>
         {% if scores %}
@@ -30,8 +30,6 @@
                 <th>대상자</th>
                 <th>선정 기준</th>
                 <th>점수</th>
-                <th>수정</th>
-
               </tr>
             </thead>
             <tbody>
@@ -40,7 +38,6 @@
                   <td>{{ score.candidate.name }}</td>
                   <td>{{ score.criteria.name }}</td>
                   <td>{{ score.score }}</td>
-                  
                   <td><a href="{% url 'edit_score' score.id %}" class="btn btn-secondary">수정</a></td>
                 </tr>
               {% endfor %}
@@ -49,13 +46,8 @@
         {% else %}
           <p>입력된 점수가 없습니다.</p>
         {% endif %}
-
-        {% if total_required == total_entered %}
-        <p style="color:green;"><strong>✅ 모든 점수를 입력 완료하셨습니다! [완료] 버튼을 눌러 주세요 </strong></p>
-
-      {% endif %}
-
         <a href="{% url 'index' %}" class="btn btn-secondary">홈으로</a>
-        <a href="{% url 'mark_review_complete' %}" class="btn btn-secondary">완료</a>
+  
+  
 </body>
 </html>

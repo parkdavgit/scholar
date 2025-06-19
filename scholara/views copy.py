@@ -6,12 +6,9 @@ from .models import Scholarship, Candidate, Criteria, Reviewer, Score
 from django.contrib.auth.decorators import login_required
 #for error handling
 from django.contrib import messages
-#for comment
 from django.shortcuts import render, redirect
-from .forms import ReviewCompletionForm
-# for admin to check complete
+from .forms import ReviewCompletionForm 
 from django.contrib.admin.views.decorators import staff_member_required
-
 
 def index(request):
     scholarship =Scholarship.objects.all()
@@ -31,8 +28,8 @@ def scholarship_detail(request, scholarship_id):
         'candidates': candidates
     })
 
+
 @login_required(login_url='index')
-#@login_required
 def submit_score(request):
     #reviewer = get_object_or_404(Reviewer, user=request.user)
     # 이 경우 만일 request.user가 reviewer에 포함이 되지 않으면 page not found ERROR
@@ -96,29 +93,16 @@ def edit_score(request, score_id):
 
 
 
-@login_required
+
+@login_required(login_url='index')
 def my_scores(request):
-    reviewer = Reviewer.objects.get(user=request.user)
-    my_scores = Score.objects.filter(reviewer=reviewer)
+    reviewer = Reviewer.objects.filter(user=request.user).first()
+    if not reviewer:
+        return render(request, 'error.html', {'message': '선정위원만 접근할 수 있습니다.'})
 
-    # Reviewer가 맡은 장학금들
-    assigned_scholarships = reviewer.scholarships.all()
+    scores = Score.objects.filter(reviewer=reviewer).select_related('candidate', 'criteria').order_by('candidate__name')
 
-    # 해당 장학금에 속한 후보자 수
-    candidates = Candidate.objects.filter(scholarship__in=assigned_scholarships)
-    criteria = Criteria.objects.filter(scholarship__in=assigned_scholarships)
-
-    # 총 입력해야 할 수 = 후보자 수 × 기준 수
-    total_required = candidates.count() * criteria.count()
-
-    # 실제 입력한 점수 수 (Score 레코드 수)
-    total_entered = my_scores.count()
-
-    return render(request, 'my_scores.html', {
-        'scores': my_scores,
-        'total_required': total_required,
-        'total_entered': total_entered,
-    })
+    return render(request, 'my_scores.html', {'scores': scores})
 
 
 
