@@ -15,12 +15,8 @@
 
 <body>
     <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-        <a class="navbar-brand">{{ score.candidate.sholarship }}&nbsp;{{ user }}&nbsp;님이 입력한 점수표</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-       
-      </nav>
+      <a class="navbar-brand">📝 장학금: <strong>{{ scholarship_name }}</strong>&nbsp;{{ user }}&nbsp;님이 입력한 점수표</a>
+    </nav>
       <br>
       <div class="container my-3">
       <p style="color:green;">입력 상태:Total Entered/Total Requird<strong> {{ total_entered }} / {{ total_required }}</strong></p>

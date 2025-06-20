@@ -50,7 +50,10 @@ def submit_score(request):
         return render(request, 'permission_denied.html')
     # 이 경우 만일 request.user가 reviewer에 포함이 되지 않으면 안내 후 전 페이지로 
 
-
+# ✅ 장학금 추출: reviewer가 평가하는 scholarship 중 첫 번째 사용
+    scholarships = reviewer.scholarships.all()
+    scholarship_name = scholarships[0].name if scholarships.exists() else '장학금 미지정'
+    
     if request.method == 'POST':
         form = ScoreForm(request.POST, reviewer=reviewer)
         if form.is_valid():
@@ -78,7 +81,7 @@ def submit_score(request):
     else:
         form = ScoreForm(reviewer=reviewer)
 
-    return render(request, 'submit_score.html', {'form': form})
+    return render(request, 'submit_score.html', {'form': form,'scholarship_name': scholarship_name})
 # views.py (추가)
 
 
@@ -134,14 +137,18 @@ def my_scores(request):
         total = sum(s.score for s in scores)
         candidate_totals[candidate.id] = total
 
-    grouped_scores = dict(grouped_scores)    
+    grouped_scores = dict(grouped_scores)
+
+    # ✅ 장학금 추출: reviewer가 평가하는 scholarship 중 첫 번째 사용
+    scholarships = reviewer.scholarships.all()
+    scholarship_name = scholarships[0].name if scholarships.exists() else '장학금 미지정'    
 
     return render(request, 'my_scores.html', {
         'grouped_scores': grouped_scores,
         'candidate_totals': candidate_totals,
         'total_required': total_required,
         'total_entered': total_entered,
-
+        'scholarship_name': scholarship_name,  # ✅ 템플릿에 넘기기
     })
 
 
