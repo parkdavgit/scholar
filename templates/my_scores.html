@@ -11,6 +11,21 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+    <style>
+      table {
+          border-collapse: collapse;
+          width: 6~100%;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+  </style>
+
 </head>
 
 <body>
@@ -25,10 +40,10 @@
         {% if grouped_scores %}
         <table class="table table-bordered">
           <tr>
-            <th>후보자</th>
-            <th>기준</th>
-            <th>점수</th>
-            <th>수정</th>
+            <th width="15%">후보자</th>
+            <th width="30%">기준</th>
+            <th width="45%">점수</th>
+            <th width="10%">수정</th>
           </tr>
         
           {% for candidate, scores in grouped_scores.items %}
@@ -53,7 +68,7 @@
                   {% elif total > 100 %}
                     <span style="color: red;">⚠ 총점이 너무 높습니다.</span>
                   {% else %}
-                    <span style="color: green;">⚠ 총점이 100점 아래 20점 이상으로 유효합니다. 선정기준별로 초과하거나 미달된 점수가 입력되지 않았는지 확인바랍니다. </span>
+                    <span style="color: green;">⚠ 유효한 총점입니다.( 20 ~ 100)</span>
                   {% endif %}
                 {% endwith %}
               </td>
@@ -65,11 +80,379 @@
         {% endif %}
 
         {% if total_required == total_entered %}
-        <p style="color:green;"><strong>✅ 모든 점수를 입력 완료하셨습니다! [완료] 버튼을 눌러 주세요 </strong></p>
+        <p style="color:green;"><strong>✅ 모든 점수를 입력 완료하셨습니다! 세부 점수 다시 한 번 확인해 주시고 [완료] 버튼을 눌러 마무리해 주세요 </strong></p>
 
       {% endif %}
 
         <a href="{% url 'index' %}" class="btn btn-secondary">홈으로</a>
         <a href="{% url 'mark_review_complete' %}" class="btn btn-secondary">완료</a>
+
+        <br><br><br> 
+  
+        <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
+          <a class="navbar-brand" style="color:#007bff"><b>큰빛교회 장학 선정 기준/Scholarship selection criteria -  2025.6</b></a>
+        </nav>   
+         
+          
+        
+        <table border="1" class="dataframe">
+            
+          <tbody>
+           
+            <tr>
+              <td width="36%" style="color:#007bff"><b>교우 장학금/Alumni Scholarship</b></td>
+             
+              <td width="6~10%">%</td>
+              <td width="18%">상/High</td>
+              <td width="18%">중/Med.</td>
+              <td width="18%">하/Low</td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+              
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>신앙/Faith</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>봉사 및 교회 활동/Volunteer&activity</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+             
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+              
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>리더십 장학금/Leadership Scholarship</b></td>
+             
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+              
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>영향력.비전/Influence.Vision</td>
+              
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>교직원 자녀 장학금/Faculty's Children Scholarship</b></td>
+             
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+              
+              <td>60%</td>
+              <td>51~60</td>
+              <td>41~50</td>
+              <td>31~40</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>신앙고백.봉사/Faith.Volunteer</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>선교사/자녀 장학금/Missionary Scholarship</b></td>
+              
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+             
+              <td>60%</td>
+              <td>51~60</td>
+              <td>41~50</td>
+              <td>31~40</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>신앙고백/Faith</td>
+             
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>신학생 장학금/Theological Seminary Scholarship</b></td>
+              
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+             
+              <td>60%</td>
+              <td>51~60</td>
+              <td>41~50</td>
+              <td>31~40</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>영향력.비전/Influence.Vision</td>
+             
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>이젤 장학금/Art scholarship</td>
+             
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+             
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>수상경력/Awards</td>
+              
+              <td>30%</td>
+              <td>21~30</td>
+              <td>11~20</td>
+              <td>1~10</td>
+            </tr>
+            <tr>
+              <td>신앙/Faith</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+             
+              <td>10%</td>
+              <td>6~10</td>
+              <td>1~5</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>특기생 장학금/Special Talent Scholarship</b></td>
+             
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+             
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>수상경력/Awards</td>
+             
+              <td>30%</td>
+              <td>21~30</td>
+              <td>11~20</td>
+              <td>1~10</td>
+            </tr>
+            <tr>
+              <td>신앙/Faith</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+              
+              <td>10%</td>
+              <td>6~10</td>
+              <td>1~5</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+            <tr>
+              <td width="36%" style="color:#007bff"><b>아산 장학금/Asan Scholarship</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>수상경력/Awards</td>
+              
+              <td>30%</td>
+              <td>21~30</td>
+              <td>11~20</td>
+              <td>1~10</td>
+            </tr>
+            <tr>
+              <td>신앙/Faith</td>
+              
+              <td>20%</td>
+              <td>16~20</td>
+              <td>11~15</td>
+              <td>6~10</td>
+            </tr>
+            <tr>
+              <td>추천/Nominated</td>
+             
+              <td>10%</td>
+              <td>6~10</td>
+              <td>1~5</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td colspan="5" style="background-color:#e0e0e0" ></td>
+            </tr>
+        
+            <tr>
+              <td width="36%" style="color:#007bff"><b>이보현 장학금/Lee Bo Hyun Memorial Scholarship</b></td>
+             
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>재정/Financial</td>
+             
+              <td>40%</td>
+              <td>31~40</td>
+              <td>21~30</td>
+              <td>11~20</td>
+            </tr>
+            <tr>
+              <td>추천/Nominate</td>
+             
+              <td>30%</td>
+              <td>21~30</td>
+              <td>11~20</td>
+              <td>1~10</td>
+            </tr>
+            <tr>
+              <td>신앙/Faith</td>
+              
+              <td>30%</td>
+              <td>21~30</td>
+              <td>11~20</td>
+              <td>1~10</td>
+            </tr>
+        
+        
+          </tbody>
+        </table>
+
 </body>
 </html>
