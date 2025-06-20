@@ -1,3 +1,4 @@
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-        <a class="navbar-brand">{{ score.candidate.sholarship }}&nbsp;장학금 위원별 점수표</a>
+        <a class="navbar-brand">{{ score.candidate.sholarship }}&nbsp;{{ user }}&nbsp;님이 입력한 점수표</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,28 +26,32 @@
       <p style="color:green;">입력 상태:Total Entered/Total Requird<strong> {{ total_entered }} / {{ total_required }}</strong></p>
       
         
-        {% if scores %}
-          <table class="table table-bordered">
-            <thead>
+        {% if grouped_scores %}
+        <table class="table table-bordered">
+          <tr>
+            <th>후보자</th>
+            <th>기준</th>
+            <th>점수</th>
+            <th>수정</th>
+          </tr>
+        
+          {% for candidate, scores in grouped_scores.items %}
+            {% for score in scores %}
               <tr>
-                <th>대상자</th>
-                <th>선정 기준</th>
-                <th>점수</th>
-                <th>수정</th>
+                {% if forloop.first %}
+                  <td rowspan="{{ scores|length|add:1 }}">{{ candidate.name }}</td>
+                {% endif %}
+                <td>{{ score.criteria.name }}</td>
+                <td>{{ score.score }}</td>
+                <td><a href="{% url 'edit_score' score.id %}" class="btn btn-secondary">수정</a></td>
               </tr>
-            </thead>
-            <tbody>
-              {% for score in scores %}
-                <tr>
-                  <td>{{ score.candidate.name }}</td>
-                  <td>{{ score.criteria.name }}</td>
-                  <td>{{ score.score }}</td>
-                  
-                  <td><a href="{% url 'edit_score' score.id %}" class="btn btn-secondary">수정</a></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+            {% endfor %}
+            <tr>
+              <td><strong>총점</strong></td>
+              <td><strong>{{ candidate_totals|get_item:candidate.id }}</strong></td>
+            </tr>
+          {% endfor %}
+        </table>
         {% else %}
           <p>입력된 점수가 없습니다.</p>
         {% endif %}

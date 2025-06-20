@@ -11,6 +11,9 @@ from django.shortcuts import render, redirect
 from .forms import ReviewCompletionForm
 # for admin to check complete
 from django.contrib.admin.views.decorators import staff_member_required
+#for reviewer total
+from django.db.models import Sum
+from collections import defaultdict
 
 
 def index(request):
@@ -99,8 +102,9 @@ def edit_score(request, score_id):
 @login_required
 def my_scores(request):
     reviewer = Reviewer.objects.get(user=request.user)
-    my_scores = Score.objects.filter(reviewer=reviewer)
-
+    my_scores = Score.objects.filter(reviewer=reviewer).select_related('candidate', 'criteria')
+    print ("my_scores.count")
+    print (my_scores.count())
     # Reviewer가 맡은 장학금들
     assigned_scholarships = reviewer.scholarships.all()
 
@@ -114,10 +118,27 @@ def my_scores(request):
     # 실제 입력한 점수 수 (Score 레코드 수)
     total_entered = my_scores.count()
 
+
+    # 후보자별로 점수 목록 묶기
+    grouped_scores = defaultdict(list)
+    candidate_totals = {}
+
+    for score in my_scores:
+        grouped_scores[score.candidate].append(score)
+
+    # 후보자별 총점 계산
+    for candidate, scores in grouped_scores.items():
+        total = sum(s.score for s in scores)
+        candidate_totals[candidate.id] = total
+
+    grouped_scores = dict(grouped_scores)    
+
     return render(request, 'my_scores.html', {
-        'scores': my_scores,
+        'grouped_scores': grouped_scores,
+        'candidate_totals': candidate_totals,
         'total_required': total_required,
         'total_entered': total_entered,
+
     })
 
 
