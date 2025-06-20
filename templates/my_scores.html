@@ -48,7 +48,19 @@
             {% endfor %}
             <tr>
               <td><strong>총점</strong></td>
-              <td><strong>{{ candidate_totals|get_item:candidate.id }}</strong></td>
+              <td colspan="2">
+                <strong>{{ candidate_totals|get_item:candidate.id }}</strong>
+                
+                {% with total=candidate_totals|get_item:candidate.id %}
+                  {% if total < 20 %}
+                    <span style="color: red;">⚠ 총점이 너무 낮습니다.</span>
+                  {% elif total > 100 %}
+                    <span style="color: red;">⚠ 총점이 너무 높습니다.</span>
+                  {% else %}
+                    <span style="color: green;">⚠ 총점이 100점 아래 20점 이상으로 유효합니다. 선정기준별로 초과하거나 미달된 점수가 입력되지 않았는지 확인바랍니다. </span>
+                  {% endif %}
+                {% endwith %}
+              </td>
             </tr>
           {% endfor %}
         </table>
