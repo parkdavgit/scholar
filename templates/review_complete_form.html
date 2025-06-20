@@ -25,7 +25,7 @@
 
       <form method="post">
         {% csrf_token %}
-        <p>입력 완료 전 마지막 확인입니다. 아래에 comment 적으셔도 됩니다.</p>
+        <p>최종 완료 전 comment할 내용이 있으시면 아래에 적으시면 됩니다.</p>
         {{ form.as_p }}
         <button type="submit" class="btn btn-success">완료하기</button>
       </form>
