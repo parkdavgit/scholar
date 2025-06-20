@@ -14,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-        <a class="navbar-brand" href="#">{{ scholarship.name }} 장학금 위원별 점수표</a>
+        <a class="navbar-brand" href="#">{{ scholarship.name }} 장학금 선정위원별 점수표</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,20 +22,14 @@
       </nav>
 
     
-
-
-
-
-
-
       <div class="container my-3">
        
             {% for reviewer_report in report_data %}
-                <h2>위원: {{ reviewer_report.reviewer.name }}</h2>
+                <h5>위원: {{ reviewer_report.reviewer.name }}</h5>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>학생명</th>
+                            <th>장학금 후보자명</th>
                             {% for criteria in criteria_list %}
                                 <th>{{ criteria.name }}</th>
                             {% endfor %}
@@ -63,7 +57,7 @@
                 </table>
   {% endfor %}
   
-  <a href="{% url 'index' %}" class="btn btn-primary float-right">index</a>  
+  <a href="{% url 'index' %}" class="btn btn-primary float-right">HOME</a>  
   
 </body>
 </html>
