@@ -14,6 +14,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 #for reviewer total
 from django.db.models import Sum
 from collections import defaultdict
+#for excel 
+from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
 
 
 def index(request):
@@ -144,32 +147,58 @@ def my_scores(request):
 
 
 
-def export_scores_excel(request, scholarship_id):
+def export_scholarship_scores(request, scholarship_id):
     scholarship = Scholarship.objects.get(id=scholarship_id)
     candidates = Candidate.objects.filter(scholarship=scholarship)
-    criteria_list = Criteria.objects.filter(scholarship=scholarship)
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "Scores"
+    reviewers = scholarship.reviewers.all()
+    criteria = Criteria.objects.filter(scholarship=scholarship)
 
-    criteria_list = list(Criteria.objects.all())
-    ws.append(["학생명"] + [c.name for c in criteria_list] + ["총점"])
-
-    for candidate in Candidate.objects.all():
-        row = [candidate.name]
+    # 후보자별 총점 계산
+    candidate_scores = {}
+    for candidate in candidates:
         total = 0
-        for criteria in criteria_list:
-            scores = Score.objects.filter(candidate=candidate, criteria=criteria)
-            avg_score = sum(s.score for s in scores) / scores.count() if scores else 0
-            row.append(round(avg_score, 2))
-            total += avg_score
-        row.append(round(total, 2))
+        for criterion in criteria:
+            for reviewer in reviewers:
+                score_qs = Score.objects.filter(candidate=candidate, criteria=criterion, reviewer=reviewer)
+                if score_qs.exists():
+                    total += score_qs.first().score
+        candidate_scores[candidate] = total
+
+    # 총점 기준으로 정렬
+    sorted_candidates = sorted(candidate_scores.items(), key=lambda x: x[1], reverse=True)
+
+    # Excel 생성
+    wb = Workbook()
+    ws = wb.active
+    ws.title = scholarship.name
+
+    # 헤더 작성
+    headers = ['후보자']
+    for reviewer in reviewers:
+        for criterion in criteria:
+            headers.append(f'{reviewer.name} - {criterion.name}')
+    headers.append('총점')
+    ws.append(headers)
+
+    # 내용 작성
+    for candidate, total in sorted_candidates:
+        row = [candidate.name]
+        for reviewer in reviewers:
+            for criterion in criteria:
+                score = Score.objects.filter(candidate=candidate, criteria=criterion, reviewer=reviewer).first()
+                row.append(score.score if score else '')
+        row.append(total)
         ws.append(row)
 
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=scholarship_scores.xlsx'
+    # 파일 응답
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    filename = f"{scholarship.name}_점수표.xlsx"
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
     wb.save(response)
     return response
+
 
 
  

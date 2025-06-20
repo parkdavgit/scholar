@@ -48,8 +48,9 @@
   <table class="table">
   <thead class="thead-dark">
   <tr>
-  <th>순서</th>
-  <th>선정위원별 점수표</th><th>장학생 대상별 점수표</th><th>Excel로 다운받기</th>
+ 
+  <th>선정위원별 점수표</th>
+  <th>Excel로 다운받기</th>
    
  
   </tr>
@@ -63,9 +64,7 @@
     <td><a href="{% url 'reviewer_report' scholar.id %}">{{ scholar.name}}</a></td> 
    
   
-    <td><a href="{% url 'scholarship_report' scholar.id %}">{{ scholar.name}}</a> 
-    </td>
-    <td><a href="{% url 'export_scores_excel' scholar.id %}">{{ scholar.name}}</a> 
+    <td><a href="{% url 'export_excel' scholar.id %}">📥 {{ scholar.name}} 엑셀 다운로드</a>
     </td>
   
   
@@ -83,59 +82,96 @@
    <table border="0" class="dataframe table table-striped">
     <thead>
       <tr style="text-align: left;">
-        <th colspan="4">선정위원</th>
+        <th>선정위</th>
+        <th>선정위원 Login User ID</th>
+        <th>선정위원 Login Password</th>
        
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Leadership Scholarship</td>
-        <td>박성업</td>
-        <td>1111</td>
-        <td>1111</td>
+        <td>조범민</td>
+        <td>Scholar7</td>
       </tr>
       <tr>
         <td>Leadership Scholarship</td>
         <td>오문길</td>
-        <td>2222</td>
-        <td>2222</td>
+        <td>Scholar8</td>
       </tr>
       <tr>
         <td>Alumni Scholarship</td>
         <td>조영권</td>
-        <td>조영권</td>
-        <td>Scholar11</td>
+        <td>Scholar1</td>
       </tr>
       <tr>
         <td>Alumni Scholarship</td>
         <td>곽성효</td>
-        <td>Scholar12</td>
-        <td>Scholar12</td>
+        <td>Scholar2</td>
       </tr>
       <tr>
         <td>Art scholarship</td>
         <td>신안나</td>
-        <td>David01</td>
-        <td>4444</td>
+        <td>Scholar3</td>
       </tr>
       <tr>
         <td>Art scholarship</td>
         <td>JulieShin</td>
-        <td>David02</td>
-        <td>4444</td>
+        <td>Scholar4</td>
       </tr>
       <tr>
         <td>Asan Scholarship</td>
         <td>김재익</td>
-        <td>park2</td>
-        <td>4444</td>
+        <td>Scholar5</td>
       </tr>
       <tr>
         <td>Asan Scholarship</td>
         <td>이 순</td>
-        <td>park1</td>
-        <td>4444</td>
+        <td>Scholar6</td>
       </tr>
+
+
+      <tr>
+        <td>Theological Seminary Scholarship</td>
+        <td>한희철</td>
+        <td>Scholar9</td>
+      </tr>
+      <tr>
+        <td>Theological Seminary Scholarship</td>
+        <td>정우진</td>
+        <td>Scholar10</td>
+      </tr>
+
+      <tr>
+        <td>Lee Bo Hyun Memorial Scholarship</td>
+        <td>김창운</td>
+        <td>Scholar11</td>
+      </tr>
+
+      <tr>
+        <td>Lee Bo Hyun Memorial Scholarship</td>
+        <td>조창호</td>
+        <td>Scholar12</td>
+      </tr>
+
+      <tr>
+        <td>Missionary Scholarship</td>
+        <td>이재남</td>
+        <td>Scholar13</td>
+      </tr>
+
+      <tr>
+        <td>Faculty's Children Scholarship</td>
+        <td>Susan Chang</td>
+        <td>Scholar14</td>
+      </tr>
+      <tr>
+        <td>Faculty's Children Scholarship</td>
+        <td>Janelle Jeong</td>
+        <td>Scholar15</td>
+      </tr>
+      
+
     </tbody>
   </table>
 
