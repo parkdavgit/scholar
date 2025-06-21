@@ -85,7 +85,7 @@
 
             <tr>
               <td>{{ candidate.name }}</td>
-              <td>
+              <td colspan="2">
                 {% for score in scores %}
                   {{ score.criteria.name }}입력됨<br>
                 {% endfor %}
@@ -93,7 +93,7 @@
                   <span style="color: red;">⚠ 항목 점수 일부 누락됨</span>
                 {% endif %}
               </td>
-              <td><strong>총점:</strong> {{ candidate_totals.candidate.id }}</td>
+              
             </tr>
           
 
