@@ -141,7 +141,11 @@ def my_scores(request):
 
     # ✅ 장학금 추출: reviewer가 평가하는 scholarship 중 첫 번째 사용
     scholarships = reviewer.scholarships.all()
-    scholarship_name = scholarships[0].name if scholarships.exists() else '장학금 미지정'    
+    scholarship_name = scholarships[0].name if scholarships.exists() else '장학금 미지정' 
+    # 누락 알림
+    scholarship = scholarships.first()
+    criteria_count = Criteria.objects.filter(scholarship=scholarship).count() if scholarship else 0
+   
 
     return render(request, 'my_scores.html', {
         'grouped_scores': grouped_scores,
@@ -149,6 +153,7 @@ def my_scores(request):
         'total_required': total_required,
         'total_entered': total_entered,
         'scholarship_name': scholarship_name,  # ✅ 템플릿에 넘기기
+        'criteria_count': criteria_count, 
     })
 
 

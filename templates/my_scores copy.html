@@ -26,18 +26,12 @@
       }
   </style>
 
-
-
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-        <a class="navbar-brand">📝 장학금: <strong>{{ scholarship_name }}</strong>&nbsp;{{ user }}&nbsp;님이 입력한 점수표</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <p></p> 
-      </nav>
+      <a class="navbar-brand">📝 장학금: <strong>{{ scholarship_name }}</strong>&nbsp;{{ user }}&nbsp;님이 입력한 점수표</a>
+    </nav>
       <br>
       <div class="container my-3">
       <p style="color:green;">입력 상태:Total Entered/Total Requird<strong> {{ total_entered }} / {{ total_required }}</strong></p>
@@ -63,7 +57,6 @@
                 <td><a href="{% url 'edit_score' score.id %}" class="btn btn-secondary">수정</a></td>
               </tr>
             {% endfor %}
-           
             <tr>
               <td><strong>총점</strong></td>
               <td colspan="2">
@@ -80,28 +73,6 @@
                 {% endwith %}
               </td>
             </tr>
-
-
-
-            <tr>
-              <td>{{ candidate.name }}</td>
-              <td>
-                {% for score in scores %}
-                  {{ score.criteria.name }}입력됨<br>
-                {% endfor %}
-                {% if scores|length < criteria_count %}
-                  <span style="color: red;">⚠ 항목 점수 일부 누락됨</span>
-                {% endif %}
-              </td>
-              <td><strong>총점:</strong> {{ candidate_totals.candidate.id }}</td>
-            </tr>
-          
-
-
-
-
-
-
           {% endfor %}
         </table>
         {% else %}
@@ -115,8 +86,6 @@
 
         <a href="{% url 'index' %}" class="btn btn-secondary">홈으로</a>
         <a href="{% url 'mark_review_complete' %}" class="btn btn-secondary">완료</a>
-
-
 
         <br><br><br> 
   
@@ -484,11 +453,6 @@
         
           </tbody>
         </table>
-
-
-
-
-
 
 </body>
 </html>
