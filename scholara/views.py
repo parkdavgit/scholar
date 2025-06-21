@@ -160,26 +160,29 @@ def export_scholarship_scores(request, scholarship_id):
     reviewers = scholarship.reviewers.all()
     criteria = Criteria.objects.filter(scholarship=scholarship)
 
-    # 후보자별 총점 계산
-    candidate_scores = {}
+    # ✅ 점수 미리 캐싱 (딕셔너리로 접근)
+    score_map = {}
+    for score in Score.objects.filter(candidate__in=candidates, criteria__in=criteria, reviewer__in=reviewers):
+        key = (score.candidate.id, score.reviewer.id, score.criteria.id)
+        score_map[key] = score.score
+
+    # ✅ 후보자별 총점 계산
+    candidate_totals = {}
     for candidate in candidates:
         total = 0
-        for criterion in criteria:
-            for reviewer in reviewers:
-                score_qs = Score.objects.filter(candidate=candidate, criteria=criterion, reviewer=reviewer)
-                if score_qs.exists():
-                    total += score_qs.first().score
-        candidate_scores[candidate] = total
+        for reviewer in reviewers:
+            for criterion in criteria:
+                total += score_map.get((candidate.id, reviewer.id, criterion.id), 0)
+        candidate_totals[candidate] = total
 
-    # 총점 기준으로 정렬
-    sorted_candidates = sorted(candidate_scores.items(), key=lambda x: x[1], reverse=True)
+    sorted_candidates = sorted(candidate_totals.items(), key=lambda x: x[1], reverse=True)
 
-    # Excel 생성
+    # ✅ Excel 만들기
     wb = Workbook()
     ws = wb.active
     ws.title = scholarship.name
 
-    # 헤더 작성
+    # ✅ 헤더
     headers = ['후보자']
     for reviewer in reviewers:
         for criterion in criteria:
@@ -187,17 +190,17 @@ def export_scholarship_scores(request, scholarship_id):
     headers.append('총점')
     ws.append(headers)
 
-    # 내용 작성
+    # ✅ 데이터 행
     for candidate, total in sorted_candidates:
         row = [candidate.name]
         for reviewer in reviewers:
             for criterion in criteria:
-                score = Score.objects.filter(candidate=candidate, criteria=criterion, reviewer=reviewer).first()
-                row.append(score.score if score else '')
+                score = score_map.get((candidate.id, reviewer.id, criterion.id), '')
+                row.append(score)
         row.append(total)
         ws.append(row)
 
-    # 파일 응답
+    # ✅ 응답 반환
     response = HttpResponse(
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     )
