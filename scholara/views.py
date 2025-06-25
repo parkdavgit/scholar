@@ -87,7 +87,7 @@ def submit_score(request):
 
 
 
-@login_required
+@login_required(login_url='index')
 def edit_score(request, score_id):
     reviewer = Reviewer.objects.filter(user=request.user).first()
     score_instance = get_object_or_404(Score, id=score_id, reviewer=reviewer)
@@ -105,7 +105,7 @@ def edit_score(request, score_id):
 
 
 
-@login_required
+@login_required(login_url='index')
 def my_scores(request):
     reviewer = Reviewer.objects.get(user=request.user)
     my_scores = Score.objects.filter(reviewer=reviewer).select_related('candidate', 'criteria')
@@ -310,3 +310,10 @@ def mark_review_complete(request):
 def admin_index(request):
     reviewers = Reviewer.objects.all()
     return render(request, 'admin_index.html', {'reviewers': reviewers})
+
+
+
+@login_required(login_url='index')
+def submit_score_ex(request):
+    
+    return render(request, 'sample.html')

@@ -181,11 +181,13 @@
  {% else %}
 
  <div id="top">
- <table><tr><td><a href="{% url 'my_scores' %}" class="btn btn-secondary float-left">점수보기</a>
+  <table><tr><td><a href="{% url 'my_scores' %}" class="btn btn-secondary float-left">점수보기( VIEW THE SCORE YOU ENTERED ) </a>
 
- </td><td> <a href="{% url 'submit_score' %}" class="btn btn-secondary float-left">점수입력</a></td>
+  </td><td> <a href="{% url 'submit_score' %}" class="btn btn-secondary float-left">점수입력( ENTER SCORES )</a></td>
  
-</tr></table>
+  <td> <a href="{% url 'submit_score_ex' %}" class="btn btn-secondary float-left">결과 예(RESULT EXAMPLE)</a></td> 
+  
+ </tr></table>
 <br><br>
 
 
@@ -197,16 +199,16 @@
   </thead>
   <tbody>
     <tr>
-      <td style="color:#007bff">할당된 장학금 종류와 신청자를 확인합니다</td>
+      <td style="color:#007bff">할당된 장학금 종류와 신청자를 맞는지 확인해 주십시오</td>
     </tr>
     <tr>
-      <td>신청자 ( 장학생 선정 대상)의 신청 서류에 문제가 없는지 확인합니다</td>
+      <td>신청자 ( 장학생 선정 대상)의 신청 서류에 문제가 없는지 확인해 주십시오</td>
     </tr>
     <tr>
-      <td>누락된 서류나 내용이 없는지 확인하고 혹시 누락되었으면 장학팀에 문의해 주십시오</td>
+      <td>누락된 서류나 내용이 없는지 확인하고 혹시 누락되었으면 장학팀( 연락처 아래에)에 문의해 주십시오</td>
     </tr>
     <tr>
-      <td>신청 서류 내용에 오류나 해당 장학금 대상자가 될 요건이 없는 내용을 발견시 장학팀에 알립니다</td>
+      <td>신청 서류 내용에 오류나 해당 장학금 대상자가 될 요건이 없는 내용을 발견시 장학팀에 알려주십시오</td>
     </tr>
 
     <tr>
@@ -276,124 +278,6 @@
     
     <tr>
       <td>완료버튼을 누르시기 전까지는 수정이 가능하나 장학팀에서 정한 기한 내에 완료해 주시기 바랍니다</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-<table border="0" class="dataframe table table-striped">
-  <thead>
-    <tr style="text-align: right;">
-      <th>장학팀 연락처</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>이름</td>
-      <td>홍길동</td>
-    </tr>
-    <tr>
-      <td>전화</td>
-      <td>416-888-8888</td>
-    </tr>
-    <tr>
-      <td>이메일</td>
-      <td>plcscholar@gamil.com</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<!--ENGLISH-->
-<div id="English">
-<br><br>
-<table border="0" class="dataframe table table-striped">
-  <thead>
-    <tr style="text-align: left;">
-      <th>How to enter scholarship selection scores</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="color:#007bff">Check the types of scholarships allocated and the applicants</td>
-    </tr>
-    <tr>
-      <td>Check that there are no problems with the application documents of the applicant</td>
-    </tr>
-    <tr>
-      <td>Please check for any missing documents or information, and if any are missing, please contact the scholarship team.</td>
-    </tr>
-    <tr>
-      <td>If you find any errors in the application documents or if anyone does not meet the requirements for the scholarship, please notify the scholarship team.</td>
-    </tr>
-
-    <tr>
-      <td></td>
-    </tr>
-
-
-    <tr>
-      <td style="color:#007bff">After logging in with the User ID and Password you received, press the [점수 입력(Enter Score)] button. On mobile, press the button next to [HOME] to see the login screen.</td>
-    </tr>
-    <tr>
-      <td>The first line of the form will contain the applicant's name, the second line will contain the scholarship selection criteria, and the third line will contain the [Score] .</td>
-    </tr>
-
-    <tr>
-      <td></td>
-    </tr>
-
-    <tr>
-      <td>Please click on the small arrow on the right side of the first line to display the score for each applicant. Click on the small arrow on the right side of the second line then enter the score in [Score].</td>
-    </tr>
-
-    <tr>
-      <td></td>
-    </tr>
-
-    <tr>
-      <td style="color:#007bff">Enter score</td>
-    </tr>
-
-
-    <tr>
-      <td>After clicking the [점수 입력(Enter Score)] button, look at the [Scholarship Selection Criteria] score table at the bottom of the page that appears, enter the score of the selection result in [Score], and click the [제출(Submit)] button.</td>
-    </tr>
-    <tr>
-      <td>Please enter the scores as integers and, if possible, enter detailed scores such as 19, 24, 38 rather than 20, 30, 40. Thank you.</td>
-    </tr>    
-    
-    <tr>
-      <td></td>
-    </tr>
-
-    <tr>
-      <td>If there is difficulty in making a judgment based on the contents of the documents provided, for example, if it is difficult to determine the applicant's financial status</td>
-    </tr>
-    <tr>
-      <td>Please enter your score by finding the best way to communicate or confirm with the person who recommended the scholarship candidate.</td>
-    </tr>
-    <tr>
-      <td>If you are unable to make a decision, please provide an accurate mid-point score so that the other selection committee members can make a decision at the final selection stage.</td>
-    </tr>
-    <tr>
-      <td></td>
-    </tr>    
-    
-    
-    <tr>
-      <td style="color:#007bff">Check and edit input scores</td>
-    </tr>
-    <tr>
-      <td>When you return to HOME, you can see the applicant's score you entered in [점수 보기] and if you need to make any changes, you can do so by clicking the Edit button.</td>
-    </tr>
-    <tr>
-      <td>When you have finished entering scores for all applicants, please click the [완료] button.</td>
-    </tr>
-    
-    <tr>
-      <td>You can make changes until you click the [완료] button(complete button), but please complete it within the deadline set by the scholarship team.</td>
     </tr>
   </tbody>
 </table>
