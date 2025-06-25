@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index, name='index'),
    
     path('score/', views.submit_score, name='submit_score'),
+    path('score-ex/', views.submit_score_ex, name='submit_score_ex'),
     path('edit-score/<int:score_id>/', views.edit_score, name='edit_score'),
     path('my-scores/', views.my_scores, name='my_scores'),
     path('report/<int:scholarship_id>/', views.scholarship_report, name='scholarship_report'),
