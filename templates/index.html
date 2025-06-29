@@ -29,9 +29,9 @@
 
 
          
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link" href="/account/register">회원가입</a>
-      </li>
+      </li>-->
 
       <li class="nav-item">
         <a class="nav-link" href="/account/login">로그인</a>
@@ -170,8 +170,16 @@
         <td>Janelle Jeong</td>
         <td>Scholar15</td>
       </tr>
-      
-
+      <tr>
+        <td>Special Talent Scholarship</td>
+        <td>홍성철</td>
+        <td>Scholar16</td>
+      </tr>
+      <tr>
+        <td>Special Talent Scholarship</td>
+        <td>고용각</td>
+        <td>Scholar17</td>
+      </tr>
     </tbody>
   </table>
 
@@ -181,10 +189,9 @@
  {% else %}
 
  <div id="top">
-  <table><tr><td><a href="{% url 'my_scores' %}" class="btn btn-secondary float-left">점수보기( VIEW THE SCORE YOU ENTERED ) </a>
-
-  </td><td> <a href="{% url 'submit_score' %}" class="btn btn-secondary float-left">점수입력( ENTER SCORES )</a></td>
- 
+  <table><tr>  
+  <td> <a href="{% url 'submit_score' %}" class="btn btn-secondary float-left">점수입력( ENTER SCORES )</a></td>
+  <td><a href="{% url 'my_scores' %}" class="btn btn-secondary float-left">점수보기( VIEW THE SCORE YOU ENTERED ) </a></td>
   <td> <a href="{% url 'submit_score_ex' %}" class="btn btn-secondary float-left">결과 예(RESULT EXAMPLE)</a></td> 
   
  </tr></table>

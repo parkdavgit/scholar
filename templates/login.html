@@ -10,21 +10,81 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+  
+      .login-container {
+        width: 300px;
+        margin: 100px auto;
+        padding: 30px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+  
+      h2 {
+        text-align: center;
+      }
+  
+      input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0 16px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+  
+      input[type="submit"] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+  
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+  
+      .footer {
+        text-align: center;
+        font-size: 0.9em;
+        color: #888;
+        margin-top: 15px;
+      }
+    </style>
+
+
 </head>
 
 <body>
 <nav class="navbar navbar-expand-md bg-light navbar-light border-bottom">
-  <a class="navbar-brand" href="{% url 'index' %}">HOME</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="{% url 'index' %}">HOME</a></nav>
+  <br>
+  
+  <div class="login-container">
+    <h2>Login</h2>
+
+
 
 	<form action="login" method="post">
 		{% csrf_token %}
+    <label for="userid">User ID</label>
+    <input type="text" id="userid" name="username" required>
 
-		<input type="text" name="username" placeholder="username"><br>
-		<input type="password" name="password" placeholder="password"><br>
-		<input type="Submit">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <input type="submit" value="Login">  
+
 
 	</form>
 
@@ -35,3 +95,4 @@
 	</div>
 </body>
 </html>
+
