@@ -110,14 +110,14 @@
 
         {% if total_required == total_entered %}
         <p style="color:green;"><strong>✅ 모든 점수를 입력 완료하셨습니다! 세부 점수 다시 한 번 확인해 주시고 [완료] 버튼을 눌러 마무리해 주세요 </strong></p>
-
+        <a href="{% url 'mark_review_complete' %}" class="btn btn-secondary">완료</a>
       {% endif %}
       <a href="{% url 'submit_score' %}" class="btn btn-secondary">점수 입력</a> 
 
       <a href="{% url 'index' %}" class="btn btn-secondary">홈으로</a> 
         
        
-        <a href="{% url 'mark_review_complete' %}" class="btn btn-secondary">완료</a>
+        
 
 
 
