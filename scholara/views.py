@@ -77,7 +77,7 @@ def submit_score(request):
 
             score.save()
 
-            return redirect('submit_score')
+            return redirect('my_scores')
     else:
         form = ScoreForm(reviewer=reviewer)
 
