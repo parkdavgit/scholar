@@ -92,6 +92,9 @@ def edit_score(request, score_id):
     reviewer = Reviewer.objects.filter(user=request.user).first()
     score_instance = get_object_or_404(Score, id=score_id, reviewer=reviewer)
 
+    if reviewer.is_done:
+        return render(request, 'thank_you.html')  # 이미 완료한 경우
+
     if request.method == 'POST':
         form = EditScoreForm(request.POST, instance=score_instance, reviewer=reviewer)
         if form.is_valid():
